@@ -1,0 +1,5 @@
+.idea
+*.class
+*.jar
+Parabot Launcher.iml
+.DS_Store
