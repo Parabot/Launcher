@@ -10,24 +10,24 @@ import java.net.URLConnection;
  * @author EmmaStone
  */
 public class Download {
-    private final File file = new File(Constants.DIRETORY_LOCATION + Constants.FILE_NAME);
+    private final File client = new File(Constants.DIRECTORY_LOCATION + Constants.CLIENT_NAME + ".jar");
 
-    private boolean doesFileExist() {
-        return file.exists();
+    private boolean doesClientExist() {
+        return client.exists();
     }
 
     private String getVersion() {
         return null; //TODO
     }
 
-    public void downloadFile() {
-        if (!doesFileExist()) {
+    public void downloadClient() {
+        if (!doesClientExist()) {
             OutputStream out = null;
             URLConnection conn;
             InputStream in = null;
             try {
                 URL url = new URL(Constants.CLIENT_URL);
-                out = new BufferedOutputStream(new FileOutputStream(file));
+                out = new BufferedOutputStream(new FileOutputStream(client));
                 conn = url.openConnection();
                 in = conn.getInputStream();
             } catch (Exception exception) {
