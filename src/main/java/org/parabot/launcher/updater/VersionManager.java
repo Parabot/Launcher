@@ -6,7 +6,7 @@ import org.json.simple.parser.ParseException;
 import org.parabot.launcher.utils.CacheUtil;
 import org.parabot.launcher.Terminal;
 import org.parabot.launcher.data.Configuration;
-import org.parabot.launcher.data.Variables;
+import org.parabot.launcher.data.Settings;
 import org.parabot.launcher.utils.WebUtil;
 
 import java.io.BufferedReader;
@@ -55,7 +55,7 @@ public class VersionManager {
 
             if (getCurrentVersion().equals(version)) {
                 System.out.println("Parabot is on the latest version!");
-                if (Variables.isClearCache()) {
+                if (Settings.isClearCache()) {
                     if (cacheUtil == null) {
                         System.out.println("Clearing cacheUtil.");
                         cacheUtil = new CacheUtil();

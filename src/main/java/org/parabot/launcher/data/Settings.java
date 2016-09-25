@@ -3,7 +3,7 @@ package org.parabot.launcher.data;
 /**
  * @author EmmaStone
  */
-public class Variables {
+public class Settings {
 
     private static boolean noVerify, loadLocal, verbose, debug, login, server, clearCache;
     private static String username, password;

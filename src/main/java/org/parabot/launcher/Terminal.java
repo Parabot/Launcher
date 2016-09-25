@@ -1,7 +1,7 @@
 package org.parabot.launcher;
 
 import org.parabot.launcher.data.Configuration;
-import org.parabot.launcher.data.Variables;
+import org.parabot.launcher.data.Settings;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,22 +17,23 @@ public class Terminal {
 
         executions.add("java");
         executions.add("-jar");
-        if (Variables.isNoVerifySelected())
+        if (Settings.isNoVerifySelected()) {
             executions.add("-noverify");
+        }
         executions.add(Configuration.DIRECTORY_LOCATION + Configuration.CLIENT_NAME + ".jar");
-        if (Variables.isLoadLocalSelected()) {
+        if (Settings.isLoadLocalSelected()) {
             executions.add("-loadlocal");
         }
-        if (Variables.isVerboseSelected()) {
+        if (Settings.isVerboseSelected()) {
             executions.add("-verbose");
         }
-        if (Variables.isDebugSelected()) {
+        if (Settings.isDebugSelected()) {
             executions.add("-debug");
         }
-        if (Variables.isLoginSelected()) {
-            executions.add("-login " + Variables.getUsername() + " " + Variables.getPassword());
+        if (Settings.isLoginSelected()) {
+            executions.add("-login " + Settings.getUsername() + " " + Settings.getPassword());
         }
-        if (Variables.isServerSelected()) {
+        if (Settings.isServerSelected()) {
             executions.add("-server "); // TODO: 25/09/16
         }
 
