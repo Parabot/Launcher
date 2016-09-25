@@ -1,4 +1,4 @@
-package org.parabot.launcher.web;
+package org.parabot.launcher.utils;
 
 import org.json.simple.parser.JSONParser;
 
