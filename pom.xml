@@ -7,6 +7,15 @@
     <groupId>org.parabot</groupId>
     <artifactId>launcher</artifactId>
     <version>0.1</version>
+
+    <repositories>
+        <repository>
+            <id>parabot-maven</id>
+            <name>Parabot its Maven Repository</name>
+            <url>http://maven.parabot.org/</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
@@ -20,12 +29,11 @@
         </plugins>
     </build>
 
-
     <dependencies>
         <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
+            <groupId>org.parabot</groupId>
+            <artifactId>internal-api</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>

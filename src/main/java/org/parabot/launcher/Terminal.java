@@ -1,7 +1,7 @@
 package org.parabot.launcher;
 
 import org.parabot.launcher.data.Configuration;
-import org.parabot.launcher.data.Settings;
+import org.parabot.launcher.helpers.SettingHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,24 +17,15 @@ public class Terminal {
 
         executions.add("java");
         executions.add("-jar");
-        if (Settings.isNoVerifySelected()) {
-            executions.add("-noverify");
+
+        for (String s : SettingHelper.createJavaCommandLine()) {
+            executions.add(s);
         }
-        executions.add(Configuration.DIRECTORY_LOCATION + Configuration.CLIENT_NAME + ".jar");
-        if (Settings.isLoadLocalSelected()) {
-            executions.add("-loadlocal");
-        }
-        if (Settings.isVerboseSelected()) {
-            executions.add("-verbose");
-        }
-        if (Settings.isDebugSelected()) {
-            executions.add("-debug");
-        }
-        if (Settings.isLoginSelected()) {
-            executions.add("-login " + Settings.getUsername() + " " + Settings.getPassword());
-        }
-        if (Settings.isServerSelected()) {
-            executions.add("-server "); // TODO: 25/09/16
+
+        executions.add(Configuration.CLIENT_LOCATION);
+
+        for (String s : SettingHelper.createApplicationCommandLine()) {
+            executions.add(s);
         }
 
         Process process = Runtime.getRuntime().exec(executions.toArray(new String[0]));
