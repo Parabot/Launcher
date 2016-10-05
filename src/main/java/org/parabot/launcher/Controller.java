@@ -4,9 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable{
 
     public static boolean loadLocal;
     public static boolean noVerify;
@@ -88,5 +92,13 @@ public class Controller {
         serverName = serverTextField.getText();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if(!server && serverTextField.isVisible()){
+            serverTextField.setVisible(false);
+        }else{
+            serverTextField.setVisible(true);
+        }
+    }
 }
 
