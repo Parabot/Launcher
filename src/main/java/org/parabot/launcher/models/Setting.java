@@ -7,33 +7,33 @@ import org.json.simple.JSONObject;
  */
 public class Setting {
 
-    private final String command;
+    private final String setting;
     protected boolean enabled;
     /**
-     * Defines if the command should be put before or after the application
-     * if true: java -jar application.jar -command
-     * if false: java -jar -command application.jar
+     * Defines if the setting should be put before or after the application
+     * if true: java -jar application.jar -setting
+     * if false: java -jar -setting application.jar
      */
     protected boolean applicationArgument = true;
 
-    public Setting(String command) {
-        this.command = command;
+    public Setting(String setting) {
+        this.setting = setting;
     }
 
-    public Setting(String command, boolean applicationArgument) {
-        this.command = command;
+    public Setting(String setting, boolean applicationArgument) {
+        this.setting = setting;
         this.applicationArgument = applicationArgument;
     }
 
-    public Setting(String command, boolean applicationArgument, boolean enabled) {
-        this.command = command;
+    public Setting(String setting, boolean applicationArgument, boolean enabled) {
+        this.setting = setting;
         this.applicationArgument = applicationArgument;
         this.enabled = enabled;
     }
 
-    public Setting(boolean enabled, String command) {
+    public Setting(boolean enabled, String setting) {
         this.enabled = enabled;
-        this.command = command;
+        this.setting = setting;
     }
 
     public boolean isEnabled() {
@@ -44,8 +44,8 @@ public class Setting {
         this.enabled = enabled;
     }
 
-    public String getCommand() {
-        return command;
+    public String getSetting() {
+        return setting;
     }
 
     public JSONObject toJSON() {
@@ -60,7 +60,7 @@ public class Setting {
     }
 
     public String toCommand() {
-        return "-" + command;
+        return "-" + setting;
     }
 
     public boolean isApplicationArgument() {

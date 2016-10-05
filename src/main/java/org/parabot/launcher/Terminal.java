@@ -3,6 +3,7 @@ package org.parabot.launcher;
 import org.parabot.launcher.data.Configuration;
 import org.parabot.launcher.helpers.SettingHelper;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -15,13 +16,15 @@ public class Terminal {
     public void execute() throws IOException, InterruptedException {
         ArrayList<String> executions = new ArrayList<>();
 
-        executions.add("java");
+        executions.add(System.getProperty("java.home") + File.separator + "bin/java");
         executions.add("-jar");
 
         for (String s : SettingHelper.createJavaCommandLine()) {
             executions.add(s);
         }
 
+
+        System.out.println(Configuration.CLIENT_LOCATION);
         executions.add(Configuration.CLIENT_LOCATION);
 
         for (String s : SettingHelper.createApplicationCommandLine()) {

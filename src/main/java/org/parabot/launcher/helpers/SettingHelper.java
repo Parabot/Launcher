@@ -24,6 +24,7 @@ public class SettingHelper {
         settings.add(new Setting("loadlocal"));
         settings.add(new Setting("verbose"));
         settings.add(new Setting("debug"));
+        settings.add(new Setting("version"));
         settings.add(new ServerSetting());
     }
 
@@ -33,7 +34,7 @@ public class SettingHelper {
 
     public static Setting getSettingByCommand(String command) {
         for (Setting setting : settings) {
-            if (setting.getCommand().equals(command)) {
+            if (setting.getSetting().equals(command)) {
                 return setting;
             }
         }
@@ -45,7 +46,7 @@ public class SettingHelper {
         JSONObject object = new JSONObject();
         for (Setting setting : settings) {
             if (setting.isEnabled()) {
-                object.put(setting.getCommand(), setting.toJSON());
+                object.put(setting.getSetting(), setting.toJSON());
             }
         }
 
@@ -56,7 +57,7 @@ public class SettingHelper {
         ArrayList<String> total = new ArrayList<>();
         for (Setting setting : settings) {
             if (setting.isEnabled() && setting.isApplicationArgument()) {
-                total.add(setting.getCommand());
+                total.add(setting.getSetting());
             }
         }
 
@@ -67,7 +68,7 @@ public class SettingHelper {
         ArrayList<String> total = new ArrayList<>();
         for (Setting setting : settings) {
             if (setting.isEnabled() && !setting.isApplicationArgument()) {
-                total.add(setting.getCommand());
+                total.add(setting.getSetting());
             }
         }
 
