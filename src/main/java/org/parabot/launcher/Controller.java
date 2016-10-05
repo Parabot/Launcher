@@ -1,63 +1,92 @@
 package org.parabot.launcher;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
 public class Controller {
 
-    public static boolean useServer;
-    public static boolean useLogin;
+    public static boolean loadLocal;
+    public static boolean noVerify;
+    public static boolean verbose;
+    public static boolean debug;
+    public static boolean server;
+    public static String serverName;
 
-    public static String server;
-    public static String username;
-    public static String password;
+    @FXML // fx:id="clearCacheButton"
+    public JFXButton clearCacheButton;
+
+    @FXML // fx:id="loadLocalToggleButton"
+    public JFXToggleButton loadLocalToggleButton;
+
+    @FXML // fx:id="versionLabel"
+    public Label versionLabel;
+
+    @FXML // fx:id="startButton"
+    public JFXButton startButton;
+
+    @FXML // fx:id="noVerifyToggleButton"
+    public JFXToggleButton noVerifyToggleButton;
+
+    @FXML // fx:id="verboseToggleButton"
+    public JFXToggleButton verboseToggleButton;
+
+    @FXML // fx:id="debugToggleButton"
+    public JFXToggleButton debugToggleButton;
+
+    @FXML // fx:id="serverTextField"
+    public JFXTextField serverTextField;
+
+    @FXML // fx:id="javaVersionLabel"
+    public Label javaVersionLabel;
+
+    @FXML // fx:id="serverToggleButton"
+    public JFXToggleButton serverToggleButton;
+
+    @FXML // fx:id="statusLabel"
+    public Label statusLabel;
 
     @FXML
-    ComboBox serverComboBox;
+    void clearCache() {
+
+    }
 
     @FXML
-    TextField usernameTextField;
+    void startClient() {
+
+    }
 
     @FXML
-    PasswordField passwordPassField;
+    void getLoadLocalSelected() {
+        loadLocal = loadLocalToggleButton.isSelected();
+    }
 
     @FXML
-    Label versionLabel,statusLabel,javaVersionLabel;
-
-
-
-    public void clearCache(){
-
+    void getNoVerifySelected() {
+        noVerify = noVerifyToggleButton.isSelected();
     }
 
-    public void clearWorkingDir(){
-
+    @FXML
+    void getVerboseSelected() {
+        verbose = verboseToggleButton.isSelected();
     }
 
-    public void startClient(){
-
+    @FXML
+    void getDebugSelected() {
+        debug = debugToggleButton.isSelected();
     }
 
-    public void setServer(){
-        if(useServer) {
-            server = serverComboBox.getSelectionModel().getSelectedItem().toString();
-        }
+    @FXML
+    void getServerSelected() {
+        server = serverToggleButton.isSelected();
     }
 
-    public void setUsername(){
-        if(useLogin) {
-            username = usernameTextField.getText();
-        }
+    @FXML
+    void setServerName() {
+        serverName = serverTextField.getText();
     }
-
-    public void setPassword(){
-        if(useLogin) {
-            password = passwordPassField.getText();
-        }
-    }
-
 
 }
+

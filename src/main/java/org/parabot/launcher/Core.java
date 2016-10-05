@@ -16,7 +16,7 @@ public class Core extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         //todo set the right path for fxml file, file on webserver is preferred @JKetelaar.
-        URL fxmlLocation = this.getClass().getResource("view.fxml");
+        URL fxmlLocation = this.getClass().getResource("interface.fxml");
         Parent root = FXMLLoader.load(fxmlLocation);
         stage.setTitle("Parabot");
         stage.setScene(new Scene(root));
