@@ -19,7 +19,6 @@ import java.io.IOException;
 public class Reader {
 
     public static void parseConfiguration() {
-        Setting setting;
         if (new File(Configuration.LAUNCHER_CONFIG_LOCATION).exists()) {
             try {
                 Object object = WebUtil.getJsonParser().parse(new FileReader(Configuration.LAUNCHER_CONFIG_LOCATION));
@@ -32,6 +31,7 @@ public class Reader {
                     String key = (String) keyObject;
                     JSONObject value = (JSONObject) jsonObject.get(key);
 
+                    Setting setting;
                     if ((setting = SettingHelper.getSettingByCommand(key)) != null) {
                         setting.setFromJSONObject(value);
                     }

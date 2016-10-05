@@ -24,7 +24,6 @@ public class SettingHelper {
         settings.add(new Setting("loadlocal"));
         settings.add(new Setting("verbose"));
         settings.add(new Setting("debug"));
-        settings.add(new Setting("version"));
         settings.add(new ServerSetting());
     }
 
