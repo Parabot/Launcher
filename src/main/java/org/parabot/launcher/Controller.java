@@ -6,11 +6,12 @@ import com.jfoenix.controls.JFXToggleButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.parabot.api.misc.JavaUtil;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable{
+public class Controller implements Initializable {
 
     public static boolean loadLocal;
     public static boolean noVerify;
@@ -54,12 +55,12 @@ public class Controller implements Initializable{
 
     @FXML
     void clearCache() {
-
+        //todo Clear Parabot Cache
     }
 
     @FXML
     void startClient() {
-
+        //todo Start Parabot Client
     }
 
     @FXML
@@ -85,6 +86,7 @@ public class Controller implements Initializable{
     @FXML
     void getServerSelected() {
         server = serverToggleButton.isSelected();
+        handleServerTextField();
     }
 
     @FXML
@@ -94,9 +96,24 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(!server && serverTextField.isVisible()){
+
+        //Set Java Version.
+        javaVersionLabel.setText("Java Version : " + String.valueOf(JavaUtil.JAVA_VERSION));
+
+        //Show or hide ServerTextField
+        handleServerTextField();
+
+        //Set Parabot Version
+        //todo set Parabot Version
+
+        //Set Status TextField
+        //todo set Status TextField
+    }
+
+    private void handleServerTextField() {
+        if (!server && serverTextField.isVisible()) {
             serverTextField.setVisible(false);
-        }else{
+        } else {
             serverTextField.setVisible(true);
         }
     }
