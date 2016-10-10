@@ -16,6 +16,7 @@ public class Writer {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("commands", SettingHelper.createJSONObjects());
+            jsonObject.put("version", "2.5");
 
             FileWriter fileWriter = new FileWriter(Configuration.LAUNCHER_CONFIG_LOCATION);
 
