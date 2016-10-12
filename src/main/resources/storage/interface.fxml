@@ -50,7 +50,7 @@
                         <Tooltip text="Automaticly launch the selected server." />
                     </tooltip>
                 </JFXToggleButton>
-                <JFXTextField fx:id="serverTextField" focusColor="#2397fc" labelFloat="true" maxWidth="141.0" minWidth="111.0" prefHeight="31.0" prefWidth="141.0" promptText="Server Name" unFocusColor="WHITE" />
+                <JFXTextField fx:id="serverTextField" focusColor="#2397fc" maxWidth="141.0" minWidth="111.0" prefHeight="31.0" prefWidth="141.0" promptText="Server Name" unFocusColor="WHITE"/>
             </children>
         </VBox>
         <VBox layoutX="14.0" layoutY="20.0" prefHeight="60.0" prefWidth="248.0" spacing="4.0">

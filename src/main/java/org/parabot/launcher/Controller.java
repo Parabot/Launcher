@@ -59,7 +59,11 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //Remove the ServerTextField on launch if needed.
         handleServerTextField();
+
+        //Set serverTextField text color to white
+        serverTextField.setStyle("-fx-text-fill: white;");
 
         //Set Java Version.
         javaVersionLabel.setText("Java Version : " + String.valueOf(JavaUtil.JAVA_VERSION));
@@ -89,11 +93,14 @@ public class Controller implements Initializable {
 
     @FXML
     private void clearCache() {
+        statusLabel.setText("Clearing Cache");
         Directories.clearCache();
+        statusLabel.setText("Cache Cleared");
     }
 
     @FXML
     private void startClient(ActionEvent event) {
+        statusLabel.setText("Starting Client");
         for (Setting setting : SettingHelper.getSettings()) {
             switch (setting.getSetting().toLowerCase()) {
                 case "noverify":
