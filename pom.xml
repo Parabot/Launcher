@@ -8,5 +8,39 @@
     <artifactId>launcher</artifactId>
     <version>0.1</version>
 
+    <repositories>
+        <repository>
+            <id>parabot-maven</id>
+            <name>Parabot its Maven Repository</name>
+            <url>http://maven.parabot.org/</url>
+        </repository>
+    </repositories>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.parabot</groupId>
+            <artifactId>internal-api</artifactId>
+            <version>1.02.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+    </dependencies>
 </project>
