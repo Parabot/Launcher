@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="339.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.parabot.launcher.Controller">
     <children>
-        <JFXButton layoutX="14.0" layoutY="227.0" prefHeight="25.0" prefWidth="111.0" ripplerFill="#2397fc" style="-fx-background-color: #333333;" text="Clear Cache" textFill="WHITE">
+        <JFXButton layoutX="14.0" layoutY="227.0" prefHeight="25.0" prefWidth="111.0" ripplerFill="#2397fc" style="-fx-background-color: #333333;" text="Clear Cache" textFill="WHITE" onAction="#clearCache">
             <tooltip>
                 <Tooltip text="Clears the Parabot Cache." />
             </tooltip>

@@ -9,16 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.parabot.api.io.Directories;
 import org.parabot.api.misc.JavaUtil;
-import org.parabot.launcher.data.Configuration;
+import org.parabot.launcher.helpers.Launcher;
 import org.parabot.launcher.helpers.SettingHelper;
-import org.parabot.launcher.helpers.VersionHelper;
-import org.parabot.launcher.io.Downloader;
 import org.parabot.launcher.io.Reader;
-import org.parabot.launcher.io.Writer;
 import org.parabot.launcher.models.Setting;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -56,6 +53,12 @@ public class Controller implements Initializable {
     @FXML // fx:id="statusLabel"
     private Label statusLabel;
 
+    private HashMap<String, String> defaultLabelValues;
+
+    public Controller() {
+        defaultLabelValues = new HashMap<>();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -66,11 +69,11 @@ public class Controller implements Initializable {
         serverTextField.setStyle("-fx-text-fill: white;");
 
         //Set Java Version.
-        javaVersionLabel.setText("Java Version : " + String.valueOf(JavaUtil.JAVA_VERSION));
+        setLabel(javaVersionLabel, String.valueOf(JavaUtil.JAVA_VERSION));
 
         //Set Status TextField
         //todo set Status TextField
-        statusLabel.setText("Starting up");
+        setLabel(statusLabel, "Starting up");
 
         Reader.parseConfiguration();
         for (Setting setting : SettingHelper.getSettings()) {
@@ -92,15 +95,15 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void clearCache() {
-        statusLabel.setText("Clearing Cache");
+    private void clearCache(ActionEvent event) {
+        setLabel(statusLabel, "Clearing cache");
         Directories.clearCache();
-        statusLabel.setText("Cache Cleared");
+        setLabel(statusLabel, "Cache cleared");
     }
 
     @FXML
     private void startClient(ActionEvent event) {
-        statusLabel.setText("Starting Client");
+        setLabel(statusLabel, "Starting client");
         for (Setting setting : SettingHelper.getSettings()) {
             switch (setting.getSetting().toLowerCase()) {
                 case "noverify":
@@ -117,44 +120,13 @@ public class Controller implements Initializable {
                     break;
             }
         }
-        Downloader.downloadFile(Configuration.DOWNLOAD_BOT, Configuration.CLIENT_LOCATION);
-        Writer.writeConfiguration();
 
-        try {
-            new Terminal().execute();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void getLoadLocalSelected() {
-
-    }
-
-    @FXML
-    private void getNoVerifySelected() {
-
-    }
-
-    @FXML
-    private void getVerboseSelected() {
-
-    }
-
-    @FXML
-    private void getDebugSelected() {
-
+        new Launcher().start();
     }
 
     @FXML
     private void getServerSelected() {
         handleServerTextField();
-    }
-
-    @FXML
-    private void setServerName() {
-
     }
 
     private void handleServerTextField() {
@@ -163,6 +135,14 @@ public class Controller implements Initializable {
         } else {
             serverTextField.setVisible(true);
         }
+    }
+
+    private void setLabel(Label label, String append) {
+        if (!defaultLabelValues.containsKey(label.getId())) {
+            defaultLabelValues.put(label.getId(), label.getText());
+        }
+
+        label.setText(defaultLabelValues.get(label.getId()) + append);
     }
 }
 
