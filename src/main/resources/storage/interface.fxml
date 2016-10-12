@@ -70,13 +70,13 @@
         </VBox>
         <VBox layoutX="14.0" layoutY="20.0" prefHeight="60.0" prefWidth="248.0" spacing="4.0">
             <children>
-                <Label text="Version : " textFill="WHITE">
+                <Label text="Version: " textFill="WHITE" fx:id="versionLabel">
                     <tooltip>
                         <Tooltip text="Parabot Version"/>
                     </tooltip>
                 </Label>
-                <Label text="Status : " textFill="WHITE"/>
-                <Label text="Java Version : " textFill="WHITE" fx:id="javaVersionLabel">
+                <Label text="Status: " textFill="WHITE" fx:id="statusLabel"/>
+                <Label text="Java version: " textFill="WHITE" fx:id="javaVersionLabel">
                     <tooltip>
                         <Tooltip text="Your current Java version"/>
                     </tooltip>
