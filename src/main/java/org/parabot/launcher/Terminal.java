@@ -23,12 +23,14 @@ public class Terminal {
             executions.add(s);
         }
 
-
-        System.out.println(Configuration.CLIENT_LOCATION);
         executions.add(Configuration.CLIENT_LOCATION);
 
         for (String s : SettingHelper.createApplicationCommandLine()) {
             executions.add(s);
+        }
+
+        for (String s : executions){
+            System.out.println(s);
         }
 
         Process process = Runtime.getRuntime().exec(executions.toArray(new String[0]));

@@ -8,13 +8,13 @@ import org.json.simple.JSONObject;
 public class Setting {
 
     private final String setting;
-    protected boolean enabled;
+    private boolean enabled;
     /**
      * Defines if the setting should be put before or after the application
      * if true: java -jar application.jar -setting
      * if false: java -jar -setting application.jar
      */
-    protected boolean applicationArgument = true;
+    private boolean applicationArgument = true;
 
     public Setting(String setting) {
         this.setting = setting;
@@ -23,6 +23,7 @@ public class Setting {
     public Setting(String setting, boolean applicationArgument) {
         this.setting = setting;
         this.applicationArgument = applicationArgument;
+        this.enabled = false;
     }
 
     public Setting(String setting, boolean applicationArgument, boolean enabled) {

@@ -3,11 +3,21 @@ package org.parabot.launcher;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.parabot.api.io.Directories;
 import org.parabot.api.misc.JavaUtil;
+import org.parabot.launcher.data.Configuration;
+import org.parabot.launcher.helpers.SettingHelper;
+import org.parabot.launcher.helpers.VersionHelper;
+import org.parabot.launcher.io.Downloader;
+import org.parabot.launcher.io.Reader;
+import org.parabot.launcher.io.Writer;
+import org.parabot.launcher.models.Setting;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,24 +62,60 @@ public class Controller implements Initializable {
         //Set Java Version.
         javaVersionLabel.setText("Java Version : " + String.valueOf(JavaUtil.JAVA_VERSION));
 
-        //Show or hide ServerTextField
-        handleServerTextField();
-
-        //Set Parabot Version
-        //todo set Parabot Version
-
         //Set Status TextField
         //todo set Status TextField
+        statusLabel.setText("Starting up");
+
+        Reader.parseConfiguration();
+        for (Setting setting : SettingHelper.getSettings()) {
+            switch (setting.getSetting().toLowerCase()) {
+                case "noverify":
+                    noVerifyToggleButton.setSelected(setting.isEnabled());
+                    break;
+                case "loadlocal":
+                    loadLocalToggleButton.setSelected(setting.isEnabled());
+                    break;
+                case "verbose":
+                    verboseToggleButton.setSelected(setting.isEnabled());
+                    break;
+                case "debug":
+                    debugToggleButton.setSelected(setting.isEnabled());
+                    break;
+            }
+        }
     }
 
     @FXML
     private void clearCache() {
-        //todo Clear Parabot Cache
+        Directories.clearCache();
     }
 
     @FXML
-    private void startClient() {
-        //todo Start Parabot Client
+    private void startClient(ActionEvent event) {
+        for (Setting setting : SettingHelper.getSettings()) {
+            switch (setting.getSetting().toLowerCase()) {
+                case "noverify":
+                    setting.setEnabled(noVerifyToggleButton.isSelected());
+                    break;
+                case "loadlocal":
+                    setting.setEnabled(loadLocalToggleButton.isSelected());
+                    break;
+                case "verbose":
+                    setting.setEnabled(verboseToggleButton.isSelected());
+                    break;
+                case "debug":
+                    setting.setEnabled(debugToggleButton.isSelected());
+                    break;
+            }
+        }
+        Downloader.downloadFile(Configuration.DOWNLOAD_BOT, Configuration.CLIENT_LOCATION);
+        Writer.writeConfiguration();
+
+        try {
+            new Terminal().execute();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

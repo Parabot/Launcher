@@ -24,12 +24,14 @@ public class Reader {
                 Object object = WebUtil.getJsonParser().parse(new FileReader(Configuration.LAUNCHER_CONFIG_LOCATION));
                 JSONObject jsonObject = (JSONObject) object;
 
-                String version = (String) jsonObject.get("version");
-                VersionHelper.setCurrentVersion(new Version(version));
+                if (jsonObject.containsKey("version")) {
+                    String version = (String) jsonObject.get("version");
+                    VersionHelper.setCurrentVersion(new Version(version));
+                }
 
                 for (Object keyObject : ((JSONObject) jsonObject.get("commands")).keySet()) {
                     String key = (String) keyObject;
-                    JSONObject value = (JSONObject) jsonObject.get(key);
+                    JSONObject value = (JSONObject) ((JSONObject) jsonObject.get("commands")).get(key);
 
                     Setting setting;
                     if ((setting = SettingHelper.getSettingByCommand(key)) != null) {
