@@ -29,10 +29,6 @@ public class Terminal {
             executions.add(s);
         }
 
-        for (String s : executions){
-            System.out.println(s);
-        }
-
         Process process = Runtime.getRuntime().exec(executions.toArray(new String[0]));
 
         process.waitFor();
