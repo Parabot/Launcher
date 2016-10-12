@@ -59,6 +59,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        handleServerTextField();
+
         //Set Java Version.
         javaVersionLabel.setText("Java Version : " + String.valueOf(JavaUtil.JAVA_VERSION));
 
@@ -149,7 +151,7 @@ public class Controller implements Initializable {
     }
 
     private void handleServerTextField() {
-        if (false && serverTextField.isVisible()) {
+        if (!serverToggleButton.isSelected() && serverTextField.isVisible()) {
             serverTextField.setVisible(false);
         } else {
             serverTextField.setVisible(true);
