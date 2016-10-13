@@ -1,13 +1,11 @@
 package org.parabot.launcher;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.parabot.launcher.data.Configuration;
-import org.parabot.launcher.helpers.Launcher;
 
 /**
  * @author JKetelaar, Fryslan
