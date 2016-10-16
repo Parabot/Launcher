@@ -15,13 +15,8 @@ public class Launcher extends Thread {
 
     @Override
     public void run() {
-        if (new File(Configuration.CLIENT_LOCATION).exists()) {
-            Thread downloadThread = new Thread() {
-                @Override
-                public void run() {
-                    Downloader.downloadFile(Configuration.DOWNLOAD_BOT, Configuration.CLIENT_LOCATION);
-                }
-            };
+        if (!new File(Configuration.CLIENT_LOCATION).exists()) {
+            Thread downloadThread = new Thread(new DownloadExecuter());
             downloadThread.start();
             try {
                 downloadThread.join();
@@ -36,6 +31,13 @@ public class Launcher extends Thread {
             new Terminal().execute();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class DownloadExecuter implements Runnable {
+        @Override
+        public void run() {
+            Downloader.downloadFile(Configuration.DOWNLOAD_BOT, Configuration.CLIENT_LOCATION);
         }
     }
 }
