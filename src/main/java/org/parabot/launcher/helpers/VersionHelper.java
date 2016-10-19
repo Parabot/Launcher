@@ -2,13 +2,14 @@ package org.parabot.launcher.helpers;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
-import org.parabot.api.Configuration;
 import org.parabot.api.io.Directories;
 import org.parabot.api.io.WebUtil;
 import org.parabot.api.misc.Version;
+import org.parabot.launcher.data.Configuration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * @author EmmaStone
@@ -51,5 +52,17 @@ public class VersionHelper {
         }
 
         return true;
+    }
+
+    public static String getLatestClient() {
+        try {
+            JSONObject object = (JSONObject) WebUtil.getJsonParser().parse(WebUtil.getContents(Configuration.GET_BOT_VERSION));
+
+            return (String) object.get("version");
+        } catch (MalformedURLException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
