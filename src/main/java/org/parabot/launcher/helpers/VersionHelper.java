@@ -20,7 +20,7 @@ public class VersionHelper {
     private static Version currentVersion;
 
     private static String getCurrentVersion() {
-        return currentVersion != null ? currentVersion.get() : "";
+        return currentVersion != null ? currentVersion.get() : null;
     }
 
     public static void setCurrentVersion(Version currentVersion) {
