@@ -1,5 +1,6 @@
 package org.parabot.launcher;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.parabot.launcher.helpers.VersionHelper;
 
@@ -10,6 +11,6 @@ public class VersionTest {
 
     @Test
     public void testAmount() {
-        VersionHelper.getLatestClient();
+        Assert.assertNotNull(VersionHelper.getLatestClient());
     }
 }

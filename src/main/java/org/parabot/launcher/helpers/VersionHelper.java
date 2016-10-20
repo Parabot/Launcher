@@ -8,6 +8,7 @@ import org.parabot.api.misc.Version;
 import org.parabot.launcher.data.Configuration;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -18,7 +19,7 @@ public class VersionHelper {
 
     private static Version currentVersion;
 
-    public static String getCurrentVersion() {
+    private static String getCurrentVersion() {
         return currentVersion != null ? currentVersion.get() : "";
     }
 
@@ -27,27 +28,29 @@ public class VersionHelper {
     }
 
     public static boolean validVersion() {
-        String url = String.format(Configuration.COMPARE_VERSION_URL, "client", getCurrentVersion());
+        if (new File(Configuration.LAUNCHER_CONFIG_LOCATION).exists()) {
+            String url = String.format(Configuration.COMPARE_VERSION_URL, "client", getCurrentVersion());
 
-        BufferedReader br = WebUtil.getReader(url);
-        try {
-            if (br != null) {
-                JSONObject object = (JSONObject) WebUtil.getJsonParser().parse(br);
-                boolean latest = Boolean.parseBoolean((String) object.get("result"));
-                if (!latest) {
-                    Directories.clearCache();
-                }
-                return latest;
-            }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        } finally {
+            BufferedReader br = WebUtil.getReader(url);
             try {
                 if (br != null) {
-                    br.close();
+                    JSONObject object = (JSONObject) WebUtil.getJsonParser().parse(br);
+                    boolean latest = Boolean.parseBoolean((String) object.get("result"));
+                    if (!latest) {
+                        Directories.clearCache();
+                    }
+                    return latest;
                 }
-            } catch (IOException e) {
+            } catch (IOException | ParseException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    if (br != null) {
+                        br.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -56,7 +59,7 @@ public class VersionHelper {
 
     public static String getLatestClient() {
         try {
-            JSONObject object = (JSONObject) WebUtil.getJsonParser().parse(WebUtil.getContents(Configuration.GET_BOT_VERSION));
+            JSONObject object = (JSONObject) WebUtil.getJsonParser().parse(WebUtil.getContents(Configuration.GET_LATEST_BOT_VERSION));
 
             return (String) object.get("version");
         } catch (MalformedURLException | ParseException e) {
