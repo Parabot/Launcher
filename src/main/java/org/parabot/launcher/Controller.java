@@ -7,10 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import org.parabot.api.io.Directories;
 import org.parabot.api.misc.JavaUtil;
 import org.parabot.launcher.helpers.Launcher;
 import org.parabot.launcher.helpers.SettingHelper;
+import org.parabot.launcher.io.CacheManager;
 import org.parabot.launcher.io.Reader;
 import org.parabot.launcher.models.Setting;
 
@@ -97,7 +97,7 @@ public class Controller implements Initializable {
     @FXML
     private void clearCache(ActionEvent event) {
         setLabel(statusLabel, "Clearing cache");
-        Directories.clearCache();
+        CacheManager.clearCache();
         setLabel(statusLabel, "Cache cleared");
     }
 

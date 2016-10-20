@@ -15,7 +15,8 @@ public class Launcher extends Thread {
 
     @Override
     public void run() {
-        if (!new File(Configuration.CLIENT_LOCATION).exists()) {
+        if (!new File(Configuration.CLIENT_LOCATION).exists()
+                || !VersionHelper.validVersion()) {
             Thread downloadThread = new Thread(new DownloadExecuter());
             downloadThread.start();
             try {
