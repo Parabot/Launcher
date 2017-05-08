@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 
 /**
- * @author JKetelaar
+ * @author JKetelaar, EmmaStone, Fryslan
  */
 public class Core extends Application {
 
