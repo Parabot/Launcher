@@ -7,8 +7,8 @@ import org.json.simple.JSONObject;
  */
 public class Setting {
 
-    private final String setting;
-    private boolean enabled;
+    private final String  setting;
+    private       boolean enabled;
     /**
      * Defines if the setting should be put before or after the application
      * if true: java -jar application.jar -setting

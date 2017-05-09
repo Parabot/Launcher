@@ -8,11 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import org.parabot.api.io.Directories;
 import org.parabot.api.misc.JavaUtil;
 import org.parabot.launcher.helpers.Launcher;
 import org.parabot.launcher.helpers.SettingHelper;
 import org.parabot.launcher.helpers.VersionHelper;
+import org.parabot.launcher.io.CacheManager;
 import org.parabot.launcher.io.Reader;
 import org.parabot.launcher.models.Setting;
 
@@ -78,7 +78,7 @@ public class Controller implements Initializable, ControllerImpl {
     }
 
     @Override
-    public void fillComponentsFromOtherThread(){
+    public void fillComponentsFromOtherThread() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -105,19 +105,19 @@ public class Controller implements Initializable, ControllerImpl {
 
     @Override
     public void disableStart(boolean otherThread) {
-        if (otherThread){
+        if (otherThread) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     startButton.setDisable(true);
                 }
             });
-        }else {
+        } else {
             startButton.setDisable(true);
         }
     }
 
-    private void fillComponents(){
+    private void fillComponents() {
         //Set Java Version.
         setLabel(javaVersionLabel, String.valueOf(JavaUtil.JAVA_VERSION));
 
@@ -144,10 +144,10 @@ public class Controller implements Initializable, ControllerImpl {
 
     @FXML
     private void clearCache(ActionEvent event) {
-        setStatus("Clearing cache");
-        Directories.clearCache();
-        setStatus("Cache cleared");
         setReady(1500);
+        setLabel(statusLabel, "Clearing cache");
+        CacheManager.clearCache();
+        setLabel(statusLabel, "Cache cleared");
     }
 
     @FXML
@@ -203,14 +203,14 @@ public class Controller implements Initializable, ControllerImpl {
 
     @Override
     public void setStatus(final String status, boolean otherThread) {
-        if (otherThread){
+        if (otherThread) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     setStatus(status);
                 }
             });
-        }else {
+        } else {
             setStatus(status);
         }
     }

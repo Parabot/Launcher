@@ -1,6 +1,5 @@
 package org.parabot.launcher.helpers;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.parabot.api.io.WebUtil;
@@ -21,7 +20,7 @@ public class Launcher extends Thread {
 
     private ControllerImpl controller;
 
-    public Launcher(ControllerImpl controller){
+    public Launcher(ControllerImpl controller) {
         this.controller = controller;
     }
 
@@ -33,8 +32,7 @@ public class Launcher extends Thread {
             controller.setStatus("Updating client (25%)", true);
 
             try {
-                JSONArray  versions = (JSONArray) WebUtil.getJsonParser().parse(WebUtil.getReader(Configuration.GET_BOT_VERSIONS));
-                JSONObject version = (JSONObject) versions.get(0);
+                JSONObject version = (JSONObject) WebUtil.getJsonParser().parse(WebUtil.getReader(Configuration.GET_LATEST_BOT_VERSION));
                 VersionHelper.setCurrentVersion(new Version((String) version.get("version")));
             } catch (IOException | ParseException e) {
                 e.printStackTrace();

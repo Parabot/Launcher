@@ -21,7 +21,7 @@ public class Reader {
     public static void parseConfiguration() {
         if (new File(Configuration.LAUNCHER_CONFIG_LOCATION).exists()) {
             try {
-                Object object = WebUtil.getJsonParser().parse(new FileReader(Configuration.LAUNCHER_CONFIG_LOCATION));
+                Object     object     = WebUtil.getJsonParser().parse(new FileReader(Configuration.LAUNCHER_CONFIG_LOCATION));
                 JSONObject jsonObject = (JSONObject) object;
 
                 if (jsonObject.containsKey("version")) {
@@ -30,7 +30,7 @@ public class Reader {
                 }
 
                 for (Object keyObject : ((JSONObject) jsonObject.get("commands")).keySet()) {
-                    String key = (String) keyObject;
+                    String     key   = (String) keyObject;
                     JSONObject value = (JSONObject) ((JSONObject) jsonObject.get("commands")).get(key);
 
                     Setting setting;

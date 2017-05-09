@@ -30,7 +30,7 @@ public class Terminal {
 
         process.waitFor();
 
-        InputStream inputStream = process.getInputStream();
+        InputStream inputStream        = process.getInputStream();
         InputStream processErrorStream = process.getErrorStream();
 
         byte b[] = new byte[inputStream.available()];
