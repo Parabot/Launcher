@@ -14,7 +14,7 @@
                 <Tooltip text="Clears the Parabot Cache." />
             </tooltip>
         </JFXButton>
-        <JFXButton layoutX="132.0" layoutY="227.0" onAction="#startClient" prefHeight="25.0" prefWidth="193.0" ripplerFill="WHITE" style="-fx-background-color: #1278d7;" text="Start Client" textFill="WHITE">
+        <JFXButton layoutX="132.0" layoutY="227.0" onAction="#startClient" prefHeight="25.0" prefWidth="193.0" ripplerFill="WHITE" style="-fx-background-color: #1278d7;" text="Start Client" textFill="WHITE" fx:id="startButton">
             <tooltip>
                 <Tooltip autoHide="true" text="Starts the Parabot Client" />
             </tooltip>

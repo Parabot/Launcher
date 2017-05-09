@@ -32,7 +32,7 @@ public class VersionHelper {
         try {
             if (br != null) {
                 JSONObject object = (JSONObject) WebUtil.getJsonParser().parse(br);
-                boolean latest = Boolean.parseBoolean((String) object.get("result"));
+                boolean latest = (boolean) object.get("result");
                 if (!latest) {
                     Directories.clearCache();
                 }

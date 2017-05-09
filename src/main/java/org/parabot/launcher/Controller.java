@@ -3,6 +3,7 @@ package org.parabot.launcher;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import org.parabot.api.io.Directories;
 import org.parabot.api.misc.JavaUtil;
 import org.parabot.launcher.helpers.Launcher;
 import org.parabot.launcher.helpers.SettingHelper;
+import org.parabot.launcher.helpers.VersionHelper;
 import org.parabot.launcher.io.Reader;
 import org.parabot.launcher.models.Setting;
 
@@ -18,7 +20,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller implements Initializable, ControllerImpl {
 
     @FXML // fx:id="clearCacheButton"
     private JFXButton clearCacheButton;
@@ -61,6 +63,8 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Set Status TextField
+        setLabel(statusLabel, "Starting up");
 
         //Remove the ServerTextField on launch if needed.
         handleServerTextField();
@@ -68,12 +72,54 @@ public class Controller implements Initializable {
         //Set serverTextField text color to white
         serverTextField.setStyle("-fx-text-fill: white;");
 
+        fillComponents();
+
+        setStatus("Ready");
+    }
+
+    @Override
+    public void fillComponentsFromOtherThread(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                fillComponents();
+            }
+        });
+    }
+
+    @Override
+    public void setReady(final int sleep) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(sleep);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                setStatus("Ready", true);
+                startButton.setDisable(false);
+            }
+        }.start();
+    }
+
+    @Override
+    public void disableStart(boolean otherThread) {
+        if (otherThread){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    startButton.setDisable(true);
+                }
+            });
+        }else {
+            startButton.setDisable(true);
+        }
+    }
+
+    private void fillComponents(){
         //Set Java Version.
         setLabel(javaVersionLabel, String.valueOf(JavaUtil.JAVA_VERSION));
-
-        //Set Status TextField
-        //todo set Status TextField
-        setLabel(statusLabel, "Starting up");
 
         Reader.parseConfiguration();
         for (Setting setting : SettingHelper.getSettings()) {
@@ -92,18 +138,23 @@ public class Controller implements Initializable {
                     break;
             }
         }
+
+        setLabel(versionLabel, String.valueOf(VersionHelper.getCurrentVersion()));
     }
 
     @FXML
     private void clearCache(ActionEvent event) {
-        setLabel(statusLabel, "Clearing cache");
+        setStatus("Clearing cache");
         Directories.clearCache();
-        setLabel(statusLabel, "Cache cleared");
+        setStatus("Cache cleared");
+        setReady(1500);
     }
 
     @FXML
     private void startClient(ActionEvent event) {
-        setLabel(statusLabel, "Starting client");
+        disableStart(false);
+        setStatus("Starting client");
+
         for (Setting setting : SettingHelper.getSettings()) {
             switch (setting.getSetting().toLowerCase()) {
                 case "noverify":
@@ -121,7 +172,7 @@ public class Controller implements Initializable {
             }
         }
 
-        new Launcher().start();
+        new Launcher(this).start();
     }
 
     @FXML
@@ -144,5 +195,25 @@ public class Controller implements Initializable {
 
         label.setText(defaultLabelValues.get(label.getId()) + append);
     }
+
+    @Override
+    public void setStatus(String status) {
+        setLabel(statusLabel, status);
+    }
+
+    @Override
+    public void setStatus(final String status, boolean otherThread) {
+        if (otherThread){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    setStatus(status);
+                }
+            });
+        }else {
+            setStatus(status);
+        }
+    }
+
 }
 

@@ -3,6 +3,7 @@ package org.parabot.launcher.io;
 import org.json.simple.JSONObject;
 import org.parabot.launcher.data.Configuration;
 import org.parabot.launcher.helpers.SettingHelper;
+import org.parabot.launcher.helpers.VersionHelper;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class Writer {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("commands", SettingHelper.createJSONObjects());
-            jsonObject.put("version", "2.5");
+            jsonObject.put("version", VersionHelper.getCurrentVersion());
 
             FileWriter fileWriter = new FileWriter(Configuration.LAUNCHER_CONFIG_LOCATION);
 

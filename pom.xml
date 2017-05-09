@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.parabot</groupId>
             <artifactId>internal-api</artifactId>
-            <version>1.02.8</version>
+            <version>1.51.1</version>
         </dependency>
 
         <dependency>
