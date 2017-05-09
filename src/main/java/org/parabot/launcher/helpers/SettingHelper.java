@@ -56,7 +56,7 @@ public class SettingHelper {
         ArrayList<String> total = new ArrayList<>();
         for (Setting setting : settings) {
             if (setting.isEnabled() && setting.isApplicationArgument()) {
-                total.add(setting.getSetting());
+                total.add(setting.toCommand());
             }
         }
 

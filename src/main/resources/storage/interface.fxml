@@ -1,69 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="339.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.parabot.launcher.Controller">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="278.0" prefWidth="339.0" style="-fx-background-color: #212121;"
+            xmlns="http://javafx.com/javafx/8" fx:controller="org.parabot.launcher.Controller">
     <children>
-        <JFXButton layoutX="14.0" layoutY="227.0" prefHeight="25.0" prefWidth="111.0" ripplerFill="#2397fc" style="-fx-background-color: #333333;" text="Clear Cache" textFill="WHITE" onAction="#clearCache">
+        <JFXButton layoutX="14.0" layoutY="227.0" prefHeight="25.0" prefWidth="111.0" ripplerFill="#2397fc"
+                   style="-fx-background-color: #333333;" text="Clear Cache" textFill="WHITE" onAction="#clearCache">
             <tooltip>
-                <Tooltip text="Clears the Parabot Cache." />
+                <Tooltip text="Clears the Parabot Cache."/>
             </tooltip>
         </JFXButton>
-        <JFXButton layoutX="132.0" layoutY="227.0" onAction="#startClient" prefHeight="25.0" prefWidth="193.0" ripplerFill="WHITE" style="-fx-background-color: #1278d7;" text="Start Client" textFill="WHITE" fx:id="startButton">
+        <JFXButton layoutX="132.0" layoutY="227.0" onAction="#startClient" prefHeight="25.0" prefWidth="193.0"
+                   ripplerFill="WHITE" style="-fx-background-color: #1278d7;" text="Start Client" textFill="WHITE"
+                   fx:id="startButton">
             <tooltip>
-                <Tooltip autoHide="true" text="Starts the Parabot Client" />
+                <Tooltip autoHide="true" text="Starts the Parabot Client"/>
             </tooltip>
         </JFXButton>
         <VBox layoutX="14.0" layoutY="101.0">
             <children>
-                <JFXToggleButton fx:id="loadLocalToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT" graphicTextGap="10.0" layoutX="29.0" layoutY="42.0" minHeight="40.0" prefHeight="37.0" prefWidth="147.0" text="Load Local" textFill="WHITE" toggleColor="#1278d7" toggleLineColor="#6195bf">
+                <JFXToggleButton fx:id="loadLocalToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT"
+                                 graphicTextGap="10.0" layoutX="29.0" layoutY="42.0" minHeight="40.0" prefHeight="37.0"
+                                 prefWidth="147.0" text="Load Local" textFill="WHITE" toggleColor="#1278d7"
+                                 toggleLineColor="#6195bf">
                     <tooltip>
-                        <Tooltip text="Is used for Running Local Scripts." />
+                        <Tooltip text="Is used for Running Local Scripts."/>
                     </tooltip>
                 </JFXToggleButton>
-                <JFXToggleButton fx:id="noVerifyToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT" graphicTextGap="16.0" layoutX="29.0" layoutY="98.0" minHeight="40.0" prefHeight="37.0" prefWidth="147.0" text="No Verify" textFill="WHITE" toggleColor="#1278d7" toggleLineColor="#6195bf">
+                <JFXToggleButton fx:id="noVerifyToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT"
+                                 graphicTextGap="16.0" layoutX="29.0" layoutY="98.0" minHeight="40.0" prefHeight="37.0"
+                                 prefWidth="147.0" text="No Verify" textFill="WHITE" toggleColor="#1278d7"
+                                 toggleLineColor="#6195bf">
                     <tooltip>
-                        <Tooltip text="Disabling the bytecode verification to allow clients to be opened which have faults while reading the bytecode." />
+                        <Tooltip
+                                text="Disabling the bytecode verification to allow clients to be opened which have faults while reading the bytecode."/>
                     </tooltip>
                 </JFXToggleButton>
-                <JFXToggleButton fx:id="verboseToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT" graphicTextGap="22.0" layoutX="39.0" layoutY="108.0" minHeight="40.0" prefHeight="20.0" prefWidth="147.0" text="Verbose" textFill="WHITE" toggleColor="#1278d7" toggleLineColor="#6195bf">
+                <JFXToggleButton fx:id="verboseToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT"
+                                 graphicTextGap="22.0" layoutX="39.0" layoutY="108.0" minHeight="40.0" prefHeight="20.0"
+                                 prefWidth="147.0" text="Verbose" textFill="WHITE" toggleColor="#1278d7"
+                                 toggleLineColor="#6195bf">
                     <tooltip>
-                        <Tooltip text="Verbose gives the ability to read everything in the console, as it displays everything in the command line" />
+                        <Tooltip
+                                text="Verbose gives the ability to read everything in the console, as it displays everything in the command line"/>
                     </tooltip>
                 </JFXToggleButton>
             </children>
         </VBox>
         <VBox layoutX="170.0" layoutY="106.0">
             <children>
-                <JFXToggleButton fx:id="debugToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT" graphicTextGap="10.0" layoutX="29.0" layoutY="42.0" minHeight="40.0" prefHeight="37.0" prefWidth="147.0" text="Debug" textFill="WHITE" toggleColor="#1278d7" toggleLineColor="#6195bf">
+                <JFXToggleButton fx:id="debugToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT"
+                                 graphicTextGap="10.0" layoutX="29.0" layoutY="42.0" minHeight="40.0" prefHeight="37.0"
+                                 prefWidth="147.0" text="Debug" textFill="WHITE" toggleColor="#1278d7"
+                                 toggleLineColor="#6195bf">
                     <tooltip>
-                        <Tooltip text="Debug allows you to disable all connections with Parabot, to have more local development. This can be useful if you’ve no internet, but want to work on Parabot libraries." />
+                        <Tooltip
+                                text="Debug allows you to disable all connections with Parabot, to have more local development. This can be useful if you’ve no internet, but want to work on Parabot libraries."/>
                     </tooltip>
                 </JFXToggleButton>
-                <JFXToggleButton fx:id="serverToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT" graphicTextGap="10.0" layoutX="39.0" layoutY="108.0" minHeight="40.0" onAction="#getServerSelected" prefHeight="37.0" prefWidth="147.0" text="Server" textFill="WHITE" toggleColor="#1278d7" toggleLineColor="#6195bf">
+                <JFXToggleButton fx:id="serverToggleButton" alignment="CENTER_LEFT" contentDisplay="RIGHT"
+                                 graphicTextGap="10.0" layoutX="39.0" layoutY="108.0" minHeight="40.0"
+                                 onAction="#getServerSelected" prefHeight="37.0" prefWidth="147.0" text="Server"
+                                 textFill="WHITE" toggleColor="#1278d7" toggleLineColor="#6195bf">
                     <tooltip>
-                        <Tooltip text="Automaticly launch the selected server." />
+                        <Tooltip text="Automaticly launch the selected server."/>
                     </tooltip>
                 </JFXToggleButton>
-                <JFXTextField fx:id="serverTextField" focusColor="#2397fc" maxWidth="141.0" minWidth="111.0" prefHeight="31.0" prefWidth="141.0" promptText="Server Name" unFocusColor="WHITE"/>
+                <JFXTextField fx:id="serverTextField" focusColor="#2397fc" maxWidth="141.0" minWidth="111.0"
+                              prefHeight="31.0" prefWidth="141.0" promptText="Server Name" unFocusColor="WHITE"/>
             </children>
         </VBox>
         <VBox layoutX="14.0" layoutY="20.0" prefHeight="60.0" prefWidth="248.0" spacing="4.0">
             <children>
                 <Label fx:id="versionLabel" text="Version: " textFill="WHITE">
                     <tooltip>
-                        <Tooltip text="Parabot Version" />
+                        <Tooltip text="Parabot Version"/>
                     </tooltip>
                 </Label>
-                <Label fx:id="statusLabel" text="Status: " textFill="WHITE" />
+                <Label fx:id="statusLabel" text="Status: " textFill="WHITE"/>
                 <Label fx:id="javaVersionLabel" text="Java version: " textFill="WHITE">
                     <tooltip>
-                        <Tooltip text="Your current Java version" />
+                        <Tooltip text="Your current Java version"/>
                     </tooltip>
                 </Label>
             </children>

@@ -11,6 +11,6 @@ public class VersionTest {
 
     @Test
     public void testAmount() {
-        Assert.assertNotNull(VersionHelper.getLatestClient());
+        Assert.assertFalse(VersionHelper.validVersion());
     }
 }
